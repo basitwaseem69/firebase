@@ -19,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
     var Size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
+        
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Column(

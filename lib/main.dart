@@ -12,7 +12,7 @@ class My extends StatefulWidget {
   State<My> createState() => _MyState();
 }
 
-class _MyState extends State<My> {
+class _MyState extends State<My> {}
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,4 +20,3 @@ class _MyState extends State<My> {
       home: SignUpScreen(),
     );
   }
-}
