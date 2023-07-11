@@ -24,7 +24,7 @@ class _MyState extends State<My> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // home: LoginScreen(),
+      home: LoginScreen(),
       // home: SignUpScreen(),
     );
   }
