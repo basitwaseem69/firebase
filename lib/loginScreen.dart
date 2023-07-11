@@ -1,4 +1,5 @@
 import 'package:firebase/snack.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,7 +20,6 @@ class _LoginScreenState extends State<LoginScreen> {
     var Size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
-        
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Column(
@@ -134,10 +134,6 @@ class _LoginScreenState extends State<LoginScreen> {
             height: 30,
           ),
 
-
-
-
-          
           //5colum text..
 
           Column(
@@ -164,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ],
           ),
           InkWell(
-            onTap: () {
+            onTap: ()async {
               if (levelController.text.isEmpty) {
                 showSnack(context, "Enter The Please Level");
               } else if (insituteController.text.isEmpty) {
@@ -181,7 +177,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   passwordController.text) {
                 showSnack(context, " Please Confirm! Password not match");
               } else {
-                // snack(context, "All Done");
+                // showSnack(context, "All Done");
+                try {
+                 await FirebaseAuth.instance.signInWithEmailAndPassword(
+                      email: emailController.text,
+                      password: passwordController.text);
+                  showSnack(context, "suessfully Login");
+                } catch (e) {
+                  showSnack(context, e.toString());
+                }
               }
             },
             child: Container(

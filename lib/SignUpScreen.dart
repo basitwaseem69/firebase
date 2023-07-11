@@ -1,4 +1,6 @@
+import 'package:firebase/loginScreen.dart';
 import 'package:firebase/snack.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -62,13 +64,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
           ],
         ),
-        InkWell(onTap: (){
+        InkWell(onTap: ()async{
           if(emailController.text.isEmpty){
             showSnack(context, "Please Enter Email");
           }
           else if(passwordController.text.isEmpty){
             showSnack(context, "Please enter Password");
-          }
+          }else{
+            try {
+              await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+
+              showSnack(context, "Account Created");
+            } catch (e) {
+              showSnack(context, e.toString());
+            }
+         Navigator.push(context, MaterialPageRoute(builder:((context) => LoginScreen()))); };
         },
           child: Text(
             "SignUp",
